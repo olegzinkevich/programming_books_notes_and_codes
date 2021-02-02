@@ -1,4 +1,4 @@
-# But operating on the elements in a list can only be done through iterative
+# Operating on the elements in a list can only be done through iterative
 # loops, which is computationally inefficient in Python. The NumPy package enables
 # users to overcome the shortcomings of the Python lists by providing a data storage
 # object called ndarray
