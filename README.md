@@ -1,6 +1,9 @@
----
-## Eli Bressert: SciPy and NumPy
+## Statistics, data science
+|               |               |
+| ------------- |:-------------:|
+|<img src="img_thumbs/bressert_numpy.JPG" width="100" height="140"> | [Eli Bressert: SciPy and NumPy](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/numpy_bressert) |
 
-> This book covers the basics of SciPy and NumPy with some additional material
-
-![](img_thumbs/bressert_numpy.JPG)
+## Testing
+|               |               |
+| ------------- |:-------------:|
+| <img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/raw/main/testing_david_sale/image.jpg" width="100" height="140"> | [David Sale: Testing Python: Applying Unit Testing, TDD, BDD and Acceptance Testing](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/testing_david_sale)  |
