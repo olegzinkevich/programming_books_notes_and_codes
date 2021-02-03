@@ -5,7 +5,7 @@ In this repository you'll find **notes** and **code samples** from the books I e
 ## NLP, Computational linguistics
 |               |               |
 | ------------- |:-------------:|
-| <img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/raw/main/akshay_natural_language_processing/akshay_nlp.jpg" width="100" height="140"> | [Kulkarni Akshay, Shivananda Adarsha: Natural Language Processing Recipes](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/akshay_natural_language_processing)  |
+|<img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/raw/main/akshay_natural_language_processing/akshay_nlp.jpg" width="100" height="140"> | [Kulkarni Akshay, Shivananda Adarsha: Natural Language Processing Recipes](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/akshay_natural_language_processing)  |
 |<img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/blob/main/benjamin_bengfort_applied_text_analysis/bergfort_text_analysis.jpg" width="100" height="140">|[Benjamin Bengfort, Tony Ojeda, Rebecca Bilbro: Applied Text Analysis with Python: Enabling Language-Aware Data Products with Machine Learning](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/benjamin_bengfort_applied_text_analysis) |
 
 
