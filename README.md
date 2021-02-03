@@ -1,4 +1,4 @@
-In this repository you'll find notes and code samples from the books I enjoyed reading and which I can recommend for personal study.
+In this repository you'll find **notes** and **code samples** from the books I enjoyed reading and which I can recommend for personal study.
 
 ---
 
