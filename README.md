@@ -1,3 +1,8 @@
+## NLP, Computational linguistics
+|               |               |
+| ------------- |:-------------:|
+| <img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/raw/main/akshay_natural_language_processing/akshay_nlp.jpg" width="100" height="140"> | [Kulkarni Akshay, Shivananda Adarsha: Natural Language Processing Recipes](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/akshay_natural_language_processing)  |
+
 ## Statistics, data science
 |               |               |
 | ------------- |:-------------:|
