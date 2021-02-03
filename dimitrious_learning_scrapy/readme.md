@@ -4,8 +4,8 @@ In the repository [programming_books_notes_and_codes](https://github.com/olegzin
 
 ## Dimitrios Kouzis-Loukas: Learning Scrapy
 
-> Scrapy fundamentals
-> Data extraction
-> Storing the scrapped data in databases
+> - Scrapy fundamentals
+> - Data extraction
+> - Storing the scrapped data in databases
 
 ![](dimitrious_scrapy.png)
