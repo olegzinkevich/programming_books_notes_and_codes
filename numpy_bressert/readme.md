@@ -6,4 +6,4 @@ In the repository [programming_books_reviews_and_codes](https://github.com/olegz
 
 > This book covers the basics of SciPy and NumPy with some additional material
 
-![](image.JPG
+![](image.JPG)
