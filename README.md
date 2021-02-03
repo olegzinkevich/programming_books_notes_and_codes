@@ -12,7 +12,7 @@ In this repository you'll find **notes** and **code samples** from the books I e
 ## Statistics, data science
 |               |               |
 | ------------- |:-------------:|
-|<img src="img_thumbs/bressert_numpy.JPG" width="100" height="140"> | [Eli Bressert: SciPy and NumPy](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/numpy_bressert) |
+|<img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/blob/main/numpy_bressert/image.JPG" width="100" height="140"> | [Eli Bressert: SciPy and NumPy](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/numpy_bressert) |
 
 ## Testing
 |               |               |
