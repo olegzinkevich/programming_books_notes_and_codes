@@ -6,3 +6,5 @@ In the repository [programming_books_reviews_and_codes](https://github.com/olegz
 > - Comprehensive overview of unit testing methods.
 > - How to implement test driven development.
 > - Acceptance testing.
+
+![](image.jpg)
