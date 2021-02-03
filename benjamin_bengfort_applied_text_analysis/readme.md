@@ -10,4 +10,4 @@ In the repository [programming_books_notes_and_codes](https://github.com/olegzin
 > - Build a dialog framework to enable chatbots and language-driven interaction
 > - Use Spark to scale processing power and neural networks to scale model complexity
 
-![](bergfort_text_analysis.jpg)
+<img src="bergfort_text_analysis.jpg" width="50%" height="50%">
