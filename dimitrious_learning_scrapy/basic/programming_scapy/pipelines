@@ -1,0 +1,13 @@
+Using treq
+treq is a Python package that tries to be the equivalent of the Python requests
+package for Twisted-based applications. It allows us to perform GET, POST, and
+other HTTP requests easily. To install it, we use pip install treq, but it's already
+preinstalled in our dev
+
+A pipeline that writes to Elasticsearch
+We will start with a spider that writes Items on an ES (Elasticsearch) server.
+You may feel that starting with ES—even before MySQL—as a persistence mechanism
+is a bit unusual, but it's actually the easiest thing one can do. ES can be schema-less,
+which means that we can use it without any configuration. treq is also sufficient for
+our (very simple) use case. If we need more advanced ES functionality, we should
+consider using txes2 and other Python/Twisted ES packages.

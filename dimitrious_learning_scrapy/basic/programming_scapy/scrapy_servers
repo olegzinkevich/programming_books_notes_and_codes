@@ -1,0 +1,12 @@
+Scrapy in other servers
+
+We will soon discover that crawling is often an "embarrassingly parallel" problem; thus, we can easily scale horizontally and exploit the resources of multiple servers. In order to do this, we are going to use a Scrapy middleware as we usually do, but we will also use Scrapyd—an application that is specially designed to manage Scrapy spider's runs on remote servers. This will allow us to have on our own servers functionality that is compatible with the one that we presented
+
+Scrapyd
+Right now, we will introduce scrapyd. Scrapyd is an application that allows us to
+deploy spiders on a server and schedule crawling jobs using them.
+
+Now, in order to deploy the spider, we use the scrapyd-deploy
+tool that is provided by scrapyd-client. scrapyd-client that used to be part
+of Scrapy, but is now a separate module that can be installed with pip install
+scrapyd-client (already installed in our dev):

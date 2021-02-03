@@ -1,0 +1,24 @@
+
+ItemLoaders provide many interesting ways of combining data, formatting them,
+and cleaning them up. Note that they are very actively developed so check the
+excellent documentation in http://doc.scrapy.org/en/latest/topics/loaders.
+html to find the most efficient ways to use them. ItemLoaders pass values from
+XPath/CSS expressions through different processor classes. Processors are fast yet
+simple functions. An example of a processor is Join(). This processor, assuming that
+you have selected multiple paragraphs with some XPath expression like //p, will
+join their text together in a single entry. Another particularly interesting processor is
+MapCompose(). You can use it with any Python function or chain of Python functions
+to implement complex functionality. For example, MapCompose(float) converts
+string data to numbers, and MapCompose(unicode.strip, unicode.title) gets
+rid of any excessive spaces and format strings with the first letter of each word
+capitalized. Let's take a look at some examples of these processors:
+
+Processor:                                          Functionality:
+Join()                                              Concatenates multiple results into one.
+MapCompose(unicode.strip)                           Removes leading and trailing whitespace characters.
+MapCompose(unicode.strip, unicode.title)            Same as Mapcompose, but also gives title cased results.
+MapCompose(float)                                   Converts strings to numbers.
+MapCompose(lambda i: i.replace(',',''), float)      Converts strings to numbers, ignoring possible ',' characters.
+MapCompose(lambda i: urlparse.urljoin(response.url, i)) Converts relative URLs to absolute URLs using response.url as base.
+
+You can use any Python expression as a processor.

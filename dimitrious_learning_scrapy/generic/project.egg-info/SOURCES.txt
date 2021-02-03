@@ -1,0 +1,13 @@
+setup.py
+generic/__init__.py
+generic/items.py
+generic/middlewares.py
+generic/pipelines.py
+generic/settings.py
+generic/spiders/__init__.py
+generic/spiders/fromcsv.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt

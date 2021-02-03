@@ -1,0 +1,124 @@
+More often
+than not, we modify settings just after the command level on our project's <project_
+name>/settings.py file. Those settings apply on our current project only
+
+Performance settings let you adjust the
+performance characteristics of Scrapy to your particular workload. CONCURRENT_
+REQUESTS sets the maximum number of requests to be performed simultaneously.
+This mostly protects your server's outbound capacity in case you are crawling many
+different websites (domains/IPs). Unless that's the case, you will typically find
+CONCURRENT_REQUESTS_PER_DOMAIN and CONCURRENT_REQUESTS_PER_IP more
+restrictive. These two protect remote servers by limiting the number of simultaneous
+requests for each unique domain or IP address, respectively. If CONCURRENT_
+REQUESTS_PER_IP is non-zero, CONCURRENT_REQUESTS_PER_DOMAIN gets ignored.
+These settings are not per second. If CONCURRENT_REQUESTS = 16 and the average
+request takes a quarter of a second, your limit is 16 / 0.25 = 64 requests per second.
+CONCURRENT_ITEMS sets the maximum number of items from each response that
+can be processed simultaneously. You may find this setting way less useful than it
+seems because quite often there's a single Item per page/request. The default value
+of 100 is also quite arbitrary. If you reduce it to, for example, 10 or 1 you might even
+see performance gains depending on the number of Items/request as well as how
+complex your pipelines are. You will also note that as this value is per request, if you
+have a limit of CONCURRENT_REQUESTS = 16, CONCURRENT_ITEMS = 100 might mean up
+to 1600 items concurrently trying to be written in your databases, and so on. I would
+prefer a little bit more conservative value for this setting in general.
+
+For downloads, DOWNLOAD_TIMEOUT determines the amount of time the downloader
+will wait before canceling a request. This is 180 seconds by default, which by all
+means seems excessive (with 16 concurrent requests this would mean five pages/
+minute for a site that is down). I would recommend reducing it to, for example,
+10 seconds if you have timeout issues. By default, Scrapy sets the delay between
+downloads to zero to maximize scraping speed. You can modify this to apply a more
+conservative download speed using the DOWNLOAD_DELAY setting. There are websites
+that measure the frequency of requests as an indication of "bot" behavior. By setting
+DOWNLOAD_DELAY, you also enable a ±50% randomizer on download delay. You can
+disable this feature by setting RANDOMIZE_DOWNLOAD_DELAY to False.
+Finally, for faster DNS lookups, an in-memory DNS cache is enabled by default via
+the DNSCACHE_ENABLED setting.
+
+Stopping crawls early
+
+Scrapy's CloseSpider extension automatically stops a spider crawl when a condition
+is met. You can configure the spider to close after a period of time, after a number
+of items have been scraped, after a number of responses have been received, or after
+a number of errors have occurred using the CLOSESPIDER_TIMEOUT (in seconds),
+CLOSESPIDER_ITEMCOUNT, CLOSESPIDER_PAGECOUNT, and CLOSESPIDER_ERRORCOUNT
+settings, respectively.
+
+HTTP caching and working offline
+Scrapy's HttpCacheMiddleware component (deactivated by default) provides a
+low-level cache for HTTP requests and responses. If enabled, the cache stores every
+request and its corresponding response. By setting HTTPCACHE_POLICY to scrapy.
+contrib.httpcache.RFC2616Policy, we can enable a way more sophisticated
+caching policy that respects website's hints according to RFC2616. To enable this
+cache, set HTTPCACHE_ENABLED to True and HTTPCACHE_DIR to a directory on the
+filesystem (using a relative path will create the directory in the project's data folder).
+You can optionally specify a database backend for your cached files by setting
+the storage backend class HTTPCACHE_STORAGE to scrapy.contrib.httpcache.
+DbmCacheStorage and, optionally, adjusting the HTTPCACHE_DBM_MODULE setting
+(defaults to anydbm). There are a few more settings that fine-tune cache's behavior
+but the defaults are likely to serve you fine.
+
+
+Crawling style
+Scrapy lets you adjust how it chooses which pages to crawl first. You can set a
+maximum depth in the DEPTH_LIMIT setting, with 0 meaning no limit. Requests can
+be assigned priorities based on their depth through the DEPTH_PRIORITY setting.
+Most notably this allows you to perform a Breadth First Crawl by setting this value
+to a positive number and switching scheduler's queues from LIFO to FIFO:
+DEPTH_PRIORITY = 1
+SCHEDULER_DISK_QUEUE = 'scrapy.squeue.PickleFifoDiskQueue'
+SCHEDULER_MEMORY_QUEUE = 'scrapy.squeue.FifoMemoryQueue'
+
+This is useful when you crawl, for example, a news portal that has the most recent
+news closer to the home page while each news page has links to other related news.
+The default Scrapy behavior would be to go as deeply as possible in the first few news
+stories in the home page and only after that continue with subsequent front-page
+news. BFO order would crawl top-level news before proceeding further, and when
+combined with a DEPTH_LIMIT, such as 3, it might allow you to quickly scan the latest
+news on a portal.
+
+ROBOTS
+Sites declare their crawler policies and hint at uninteresting parts of their structure
+with a web-standard robots.txt file in their root directory. Scrapy can take it into
+consideration if you set the ROBOTSTXT_OBEY setting to True. If you enable it, keep it
+in mind while debugging in case you notice any unexpected behavior.
+
+The CookiesMiddleware transparently takes care of all cookie-related operations,
+enabling among others, session tracking, which allows you to log in, and so
+on. If you want to have more "stealth" crawling, you can disable this by setting
+COOKIES_ENABLED to False. Disabling cookies also slightly reduces the bandwidth
+that you use and might speed up your crawling a little bit depending on the
+website. Similarly, the REFERER_ENABLED setting is True by default, enabling
+RefererMiddleware, which populates Referer headers. You can define custom
+headers using DEFAULT_REQUEST_HEADERS. You may find this useful for weird sites
+that ban you unless you have particular request headers. Finally, the automatically
+generated settings.py file recommends that we set USER_AGENT. This defaults to
+the Scrapy version, but we should change it to something that allows website owners
+to be able to contact us.
+
+Fine-tuning downloading
+The RETRY_*, REDIRECT_*, and METAREFRESH_* settings configure the Retry, Redirect
+and Meta-Refresh middleware, respectively. For example, REDIRECT_PRIORITY_
+ADJUST set to 2 means that every time there's a redirect, the new request will be
+scheduled after all non-redirected requests get served, and REDIRECT_MAX_TIMES
+set to 20 means that after 20 redirects the downloader will give up and return
+whatever it has. It's nice to be aware of these settings in case you crawl some ill-cased
+websites, but the default values will serve you fine in most cases. The same applies to
+HTTPERROR_ALLOWED_CODES and URLLENGTH_LIMIT.
+
+Autothrottle extension settings
+The AUTOTHROTTLE_* settings enable and configure the autothrottle extension. This
+comes with a great promise, but in practice, I find that it tends to be somewhat
+conservative and difficult to tune. It uses download latencies to get a feeling of how
+loaded our and the target server are and adjusts downloader's delay accordingly. If
+you have a hard time finding the best value for DOWNLOAD_DELAY (defaults to 0), you
+should find this module useful.
+
+Logging and debugging
+Finally, there are a few logging and debugging functions. LOG_ENCODING, LOG_
+DATEFORMAT and LOG_FORMAT let you fine tune your logging formats, which you
+may find useful if you intend to use log-management solutions, such as Splunk, or
+Logstash, and Kibana. DUPEFILTER_DEBUG and COOKIES_DEBUG will help you debug
+relatively complex situations where you get less than expected requests, or your
+sessions get lost unexpectedly.

@@ -1,0 +1,11 @@
+Chrome, you will see that
+the HTML code for this page doesn't contain any information relevant to properties.
+Where does this data come from?
+
+In these cases your next step is, as usual, to open the Network tab of Chrome's
+debugger (5) to find out what's going on. In the list on the left, we can see all the
+requests that Chrome performed to load this page. In this simple page, there are
+only three requests: static/ that we already checked, jquery.min.js that retrieves the
+code for a popular Javascript framework, and api.json which seems interesting. If
+we click on it (6) and we then click the Preview tab on the right (7), we will notice
+that it contains the data we have been looking for.

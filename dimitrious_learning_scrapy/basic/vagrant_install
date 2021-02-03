@@ -1,0 +1,37 @@
+www.vagrantup.com
+Vargant - tool for creating virtual envs for Docker, etc.
+
+1.
+choose Windows version.
+Install
+
+After install use CMD to access the terminal and type:
+vagrant
+
+2.
+Install VirtualBox and Git: more effectively to use Docker Toolbox (both Git and Virtual Box):
+
+https://docs.docker.com/toolbox/toolbox_install_windows/
+
+3. Run in cmd
+
+vagrant ssh
+
+The code has been cloned from your host machine to the dev machine and
+you can find it on the book directory:
+
+$ cd scrapybook
+
+C:\Users\810004\scrapybook>vagrant up --no-parallel
+
+
+
+
+
+
+
+
+
+
+
+

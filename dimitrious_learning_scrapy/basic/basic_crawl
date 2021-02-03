@@ -1,0 +1,45 @@
+USe cmd and scrapy shell
+
+scrapy shell http://web:9312/properties/property_000000.html
+
+response.body[:50]
+
+response.xpath('//h1/text()').extract()
+
+/text() at the end of the //h1 expression. This is necessary in order to extract just the text contained in H1, and not the H1 element itself. We will almost always use /text() for textual
+fields. If we skip it, we get the text for the whole element including markup, which is
+not what we want:
+>>> response.xpath('//h1').extract()
+[u'<h1 itemprop="name" class="space-mbs">set unique family well</h1>']
+
+Let's have a look at price. Price is contained in the following HTML structure:
+<strong class="ad-price txt-xlarge txt-emphasis" itemprop="price">
+£334.39pw</strong>
+
+Again we see itemprop="name", which is brilliant. Our XPath will be //*[@
+itemprop="price"][1]/text(). Let's try it:
+
+>>> response.xpath('//*[@itemprop="price"][1]/text()').extract()
+[u'\xa3334.39pw']
+
+Using RE
+
+We notice some Unicode characters (the pound sign £), and then the 350.00pw price.
+It is indicative that data isn't always as clean as we would wish, and we might need
+to clean them a bit more. In this case, for example, we might want to use a regular
+expression to select just the numbers and the decimal dot. We can do so by using the
+re() method and a simple regular expression instead of extract():
+
+>>> response.xpath('//*[@itemprop="price"][1]/text()').re('[.0-9]+')
+[u'334.39']
+
+The story for the description text is similar. There is an itemprop="description"
+property that indicates description. The XPath expression is: //*[@
+itemprop="description"][1]/text(). Similarly, the address is annotated with
+itemtype="http://schema.org/Place"; thus, the XPath expression is: //*[@
+itemtype="http://schema.org/Place"][1]/text().
+
+Similarly, the image has an itemprop="image". We thus use //img[@
+itemprop="image"][1]/@src. Notice that we won't use /text() in this case, because
+we don't want any text but just the src attribute that contains the URL for this image.
+

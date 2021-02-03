@@ -1,0 +1,12 @@
+Scapinghub is the Amazon of Scrapy hosting—a cloud Scrapy infrastructure provider that is built by lead Scrapy developers. It is a paid service, but they provide a free tier with no need for a credit card. If you want to have your Scrapy crawler running on a professionally set up and maintained infrastructure within minutes, then this chapter is for you.
+
+
+To deploy go to your folder with spider in cmd:
+cd folder
+
+then shub login
+
+
+then shub deploy 378292  # it's my project name
+
+more https://app.scrapinghub.com/p/378292/deploy

@@ -1,0 +1,210 @@
+user types a URL on the browser (or more often, when he/she clicks on a link or a bookmark) until a page is displayed on the screen. From the perspective of this book, this process has four steps:
+•
+A URL is typed on the browser. The first part of the URL (the domain name, such as gumtree.com) is used to find the appropriate server on the web, and the URL along with other data like cookies form a request which is sent to that server.
+•
+The server replies by sending an HTML page to the browser. Note that the server might also return other formats, such as XML or JSON, but for now we focus on HTML.
+•
+The HTML gets translated to an internal tree representation inside the browser: the infamous Document Object Model (DOM).
+
+URL/DNS
+The URL
+For our purposes, the URL has two main parts. The first part helps us locate the
+appropriate server on the net via the Domain Name System (DNS). For example,
+when you send https://mail.google.com/mail/u/0/#inbox to the browser,
+it creates a DNS request on mail.google.com, which resolves the IP address of a
+suitable server such as 173.194.71.83. Essentially, https://mail.google.com/
+mail/u/0/#inbox translates to https://173.194.71.83/mail/u/0/#inbox.
+
+Tag: <p>
+
+Element: Everything between <p> and </p> is called an HTML element. Note that elements
+might contain other elements, as is the case for the <div> element in the example or
+the second <p>, which includes an <a> element.
+
+Attribute: Some tags are a bit more complex, such as <a href="http://www.iana.org/
+domains/example">. The href part with the URL is called an attribute.
+
+DOM representation is cross-platform and languageindependent,
+and is supported by most browsers.
+
+To see the tree representation of a web page in Chrome, right-click on the element
+you are interested in, and select Inspect Element. If this feature is disabled, you can
+still access it by clicking on the Chrome menu and then Tools | Developer Tools.
+
+
+Chrome developer xpath functions:
+
+In order to use XPath with Google Chrome, click on the Console tab of Developer
+Tools and use the $x utility function. For example, you can try $x('//h1') on
+http://example.com/. It will move the browser to the <h1> element,
+
+Useful xpath expressions
+
+$x('//html/head/title')
+[ <title>Example Domain</title> ]
+$x('/html')
+[ <html>...</html> ]
+$x('/html/body')
+[ <body>...</body> ]
+$x('/html/body/div')
+[ <div>...</div> ]
+$x('/html/body/div/h1')
+[ <h1>Example Domain</h1> ]
+$x('/html/body/div/p')
+[ <p>...</p>, <p>...</p> ]
+$x('/html/body/div/p[1]')
+[ <p>...</p> ]
+$x('/html/body/div/p[2]')
+[ <p>...</p> ]
+
+
+For large documents, you might have to write a very large XPath expressions to
+reach specific elements. In order to avoid this, the // syntax allows you to get
+elements of a particular type no matter where they are in the hierarchy. For example,
+//p will select all the p elements, and //a all the links for us.
+
+$x('//p')
+[ <p>...</p>, <p>...</p> ]
+
+$x('//a')
+[ <a href="http://www.iana.org/domains/example">More
+information...</a> ]
+
+For example, to find
+any links under any div, you can use //div//a. Note that //div/a with single
+slash would give an empty array, because there isn't any `a` directly under `div` in
+example.com:
+
+$x('//div//a')
+[ <a href="http://www.iana.org/domains/example">More
+information...</a> ]
+
+
+You can also select attributes. The only attribute on http://example.com/ is the
+href of the link, which you can access using the character @ as follows:
+$x('//a/@href')
+[ href="http://www.iana.org/domains/example" ]
+
+You can also select just the text by using the text() function:
+$x('//a/text()')
+[ "More information..." ]
+
+You can use the * character to select all elements at a specific hierarchy level.
+For example:
+$x('//div/*')
+
+For example, //a[@href] selects link that contains href attribute,
+and //a[@href="http://www.iana.org/domains/example"] selects link that have
+an attribute href with the specified value.
+
+Even more useful is the ability to find links whose href attribute starts with, or
+contains, a specific substring. The following are some examples:
+$x('//a[@href]')
+[ <a href="http://www.iana.org/domains/example">More
+information...</a> ]
+$x('//a[@href="http://www.iana.org/domains/example"]')
+[ <a href="http://www.iana.org/domains/example">More
+information...</a> ]
+$x('//a[contains(@href, "iana")]')
+[ <a href="http://www.iana.org/domains/example">More
+information...</a> ]
+$x('//a[starts-with(@href, "http://www.")]')
+[ <a href="http://www.iana.org/domains/example">More
+information...</a>]
+$x('//a[not(contains(@href, "abc"))]')
+[ <a href="http://www.iana.org/domains/example">More
+information...</a>]
+
+Other examples to use inside a script:
+
+response.xpath('/html').extract()
+[u'<html><head><title>...</body></html>']
+
+response.xpath('/html/body/div/h1').extract()
+[u'<h1>Example Domain</h1>']
+
+response.xpath('/html/body/div/p').extract()
+[u'<p>This domain ... permission.</p>', u'<p><a href="http://www.
+iana.org/domains/example">More information...</a></p>']
+
+response.xpath('//html/head/title').extract()
+[u'<title>Example Domain</title>']
+
+response.xpath('//a').extract()
+[u'<a href="http://www.iana.org/domains/example">More
+information...</a>']
+
+response.xpath('//a/@href').extract()
+[u'http://www.iana.org/domains/example']
+
+response.xpath('//a/text()').extract()
+[u'More information...']
+
+response.xpath('//a[starts-with(@href, "http://www.")]').extract()
+[u'<a href="http://www.iana.org/domains/example">More
+information...</a>']
+
+Using Chrome to get XPath expressions
+
+Chrome acts even more developer-friendly by giving us basic XPath expressions. Start
+by inspecting an element as shown earlier: right-click on the desired element, and
+then choose Inspect Element. This opens Developer Tools and the HTML element
+in the tree representation will be highlighted. Now right-click on it, and select Copy >
+XPath from the menu; the XPath expression will be copied to the clipboard.
+
+
+When scraping, you will usually be interested in elements that contain
+a certain class, that is, both "link" and "link active" in the previous example.
+The contains() XPath function allows you to select all the elements that contain a
+certain class.
+• To select the URL for the first image in the table that has a class attribute
+with value "infobox", use the following:
+
+//table[@class="infobox"]//img[1]/@src
+
+• To select all the URLs of the links under the div with a class attribute that
+starts with "reflist":
+
+//div[starts-with(@class,"reflist")]//a/@href
+
+• To select all the URLs of links under the div element following an element
+whose child element contains the text "References":
+
+//*[text()="References"]/../following-sibling::div//a
+
+Anticipating changes
+
+Scraping often targets pages on servers that are beyond our control. This means
+that if their HTML changes in a way that makes our XPath expressions invalid, we
+will have to go back to our spiders and correct them. This doesn't usually take long,
+because the changes are typically small. However, it's certainly something we would
+prefer to avoid. Some simple rules help us reduce the odds that your expressions will
+become invalid:
+
+• Avoid array indexes (numbers)
+Chrome will often give you expressions with lots of constant numbers
+such as:
+
+//*[@id="myid"]/div/div/div[1]/div[2]/div/div[1]/div[1]/a/img
+
+This is quite fragile, because if something like an advertisement block adds
+an extra div somewhere in that hierarchy, those numbers will end up
+pointing to different elements
+
+The solution in this case is to go as close as
+possible to the target img tag, and find an element with an id or a class
+attribute that you can use, such as:
+
+//div[@class="thumbnail"]/a/img
+
+IDs are often the most reliable
+
+The id attributes are usually the best choice for a target, as long as they are
+meaningful and data-related. Partially, this is because JavaScript and external
+link anchors often use them to reference specific parts of the document. For
+example, the following XPath is quite robust:
+//*[@id="more_info"]//text()
+
+
+
+

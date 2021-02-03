@@ -1,0 +1,28 @@
+Creating contracts
+
+Contracts are a bit like unit tests for spiders. They allow you to quickly know if
+something is broken. For example, let's assume that you wrote a scraper a few weeks
+ago, and it had several spiders. You want to quickly check if everything is okay
+today. Contracts are included in the comments just after the name of a function
+(docstring), and they start with @. Let's look at the following contract for example:
+
+def parse(self, response):
+    """ This function parses a property page.
+    @url http://web:9312/properties/property_000000.html
+    @returns items 1
+    @scrapes title price description address image_urls
+    @scrapes url project spider server date
+    """
+
+The preceding code says, "check this URL and you should find one item with values
+on those fields I enlist". Now if you run scrapy check, it will go and check whether
+the contracts are satisfied:
+
+$ scrapy check basic
+----------------------------------------------------------------
+Ran 3 contracts in 1.640s
+OK
+
+A contract might fail because either the spider code is broken, or some of the XPath
+expressions are out-of-date with the URL you are checking against.
+

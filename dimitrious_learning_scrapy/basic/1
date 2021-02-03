@@ -1,0 +1,30 @@
+Starting from data, leads to a
+much more pleasant and predictable software development experience.
+
+LImitations
+The two
+most important things to avoid are denial-of-service (DoS) attack like behavior and
+violating copyrights.
+In the first one, a typical visitor might be visiting a new page every few seconds.
+A typical web crawler might be downloading tens of pages per second. That is
+more than ten times the traffic that a typical user generates.
+
+Monitor the response times, and if you see them
+increasing, reduce the intensity of your crawl
+
+On copyrights, obviously, take a look at the copyright notice of every website you
+scrape, and make sure you understand what is allowed and what is not. Most sites
+allow you to process information from their site as long as you don't reproduce them
+claiming that it's yours. What is nice to have is a User-Agent field on your requests
+that allows webmasters to know who you are and what you do with their data.
+Scrapy does this by default by using your BOT_NAME as a User-Agent when making
+requests. If this is a URL or a name that clearly points to your application, then the
+webmaster can visit your site, and learn more about how you use their data. Another
+important aspect is allowing any webmaster to prevent you from accessing certain
+areas of their website. Scrapy provides functionality (RobotsTxtMiddleware) that
+respects their preferences as expressed on the web-standard robots.txt file (see an
+example of that file at http://www.google.com/robots.txt). Finally, it's good to
+provide the means for webmasters to express their desire to be excluded from your
+crawls. At the very least, it must be easy for them to find a way to communicate with
+you and express any concerns.
+

@@ -1,0 +1,15 @@
+Two-direction crawling with a CrawlSpider
+
+If you felt that this two-direction crawling was a bit too tedious, then you are
+really getting it. Scrapy tries to simplify all those very common cases, and makes
+them easier to code. The easiest way to achieve the same results is by using a
+CrawlSpider, a class that allows easier implementation of such crawls. To do so, we
+will use the genspider command, setting a -t crawl parameter in order to create a
+spider using the crawl spider template:
+
+$ scrapy genspider -t crawl easy web
+
+Created spider 'crawl' using template 'crawl' in module:
+properties.spiders.easy
+
+Now the file properties/spiders/easy.py

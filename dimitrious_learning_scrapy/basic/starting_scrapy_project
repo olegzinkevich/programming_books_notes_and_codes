@@ -1,0 +1,44 @@
+go to your folder in cmd or pycharm Terminal and create a new Scrapy project:
+
+scrapy startproject project_name
+
+We use project named "Properties"
+
+It will create
+
+├── properties
+│ ├── __init__.py
+│ ├── items.py
+│ ├── pipelines.py
+│ ├── settings.py
+│ └── spiders
+│ └── __init__.py
+└── scrapy.cfg
+
+When do you use a spider and when do you use a project? A
+project groups Items and spiders. If you have many websites
+from which you extract the same type of Items, for example:
+properties, then all those can be on a single project, and likely
+have one spider for each source/website. On the other hand, you
+would have different projects for sources with books and sources
+with properties.
+
+Now we need to write a spider. Typically, there will be
+one spider per website or a section of website if it's very large.
+
+USe command in terminal cmd (cd scrapy_project/spiders/:
+
+scrapy genspider basic web
+
+a new spyder project will be located in your scrapy project / spiders folder.
+
+USe this command to find out other available templates:
+ scrapy genspider -l
+
+
+
+To start a spider use in cmd:
+scrapy crawl basic
+
+
+

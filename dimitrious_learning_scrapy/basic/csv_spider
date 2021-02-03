@@ -1,0 +1,18 @@
+Most of the time you have one spider per source web-site, but there are cases where you
+want to scrape data from many websites and the only thing that changes between them
+is the XPath expressions you use. In these cases, it feels like overkill to have a spider for
+every site. Can you crawl through them all with a single spider? The answer is yes.
+
+We can create a new project named generic and a spider named fromcsv:
+
+$ scrapy startproject generic
+
+$ cd generic
+
+Then create a spider:
+$ scrapy genspider fromcsv example.com
+
+We can use a spreadsheet
+program, such as Microsoft Excel, to create this .csv file. Fill in a few URLs and
+XPath expressions as shown in the following figure and then save it as todo.csv
+

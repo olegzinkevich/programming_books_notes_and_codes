@@ -1,0 +1,8 @@
+Every now and then you might have to write Spider middlewares. They process
+Requests just after the spider and before any downloader middleware and Responses
+in the opposite order. With a downloader middleware you may, for example, decide
+to rewrite all your URLs to use HTTPS instead of HTTP regardless of what a spider
+extracts from pages. It implements functionality that is specific to your project's needs
+and shared across all spiders. The main thing that differentiates between downloader
+middlewares and spider middlewares is that when a downloader middleware gets a
+Request, it should return a single Response.

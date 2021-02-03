@@ -1,0 +1,6 @@
+Using treq
+treq is a Python package that tries to be the equivalent of the Python requests
+package for Twisted-based applications. It allows us to perform GET, POST, and
+other HTTP requests easily. To install it, we use pip install treq, but it's already
+preinstalled in our dev.
+

@@ -1,0 +1,22 @@
+Scrapy is a scraping application built using the Twisted Python framework. Twisted
+is indeed somewhat unusual because it's event-driven and encourages us to write
+asynchronous code.
+
+Twisted provides us with methods that allow us to perform all these and many more
+without blocking code execution.
+To showcase the difference, let's assume that we have a typical synchronous scrapping
+application. It has, for example, four threads, and at a given moment, three of them
+are blocked waiting for responses, and one of them is blocked performing a database
+write access to persist an Item. At any given moment, it's quite unlikely to find a
+general-purpose thread of a scrapping application doing anything else but waiting
+for some blocking operation to complete. When blocking operations complete, some
+computations may take place for a few microseconds and then threads block again on
+other blocking operations that likely last for at least a few milliseconds. Overall the
+server isn't idle because it runs tens of applications utilizing thousands of threads, thus,
+after some careful tuning, CPUs remain reasonably utilized.
+
+
+Deferreds and deferred chains
+Deferreds are the most essential mechanism that Twisted offers to help us write
+asynchronous code. Twisted APIs use deferreds to allow us to define sequences of
+actions that take place when certain events occur. Let's have a look at them.

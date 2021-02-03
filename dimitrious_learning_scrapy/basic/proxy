@@ -1,0 +1,14 @@
+You can test a free proxy by searching through HMA's public proxy list
+(http://proxylist.hidemyass.com/).
+
+Crawlera is a service by Scrapinghub and lead developers of Scrapy that acts
+like a very clever proxy. Apart from using a large pool of IPs behind the scenes
+to route your requests, it also adjusts the delays and retries failures to give you a
+stable stream of successful responses as much as possible while remaining as fast
+as possible. It's essentially a scraper's dream come true, and you can use it just by
+setting the http_proxy environment variable as before:
+$ export http_proxy=myusername:mypassword@proxy.crawlera.com:8010
+
+Pricing starts from 25$
+https://app.scrapinghub.com/o/261895/crawlera/getting-started
+
