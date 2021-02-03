@@ -18,3 +18,9 @@ In this repository you'll find **notes** and **code samples** from the books I e
 |               |               |
 | ------------- |-------------|
 | <img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/raw/main/testing_david_sale/image.jpg" width="100" height="140"> | [David Sale: Testing Python: Applying Unit Testing, TDD, BDD and Acceptance Testing](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/testing_david_sale)  |
+
+## Web scraping, data-mining
+
+|               |               |
+| ------------- |-------------|
+| <img src="https://github.com/olegzinkevich/programming_books_notes_and_codes/blob/main/dimitrious_learning_scrapy/dimitrious_scrapy.png" width="100" height="140"> | [Dimitrios Kouzis-Loukas: Learning Scrapy](https://github.com/olegzinkevich/programming_books_notes_and_codes/tree/main/dimitrious_learning_scrapy)  |
